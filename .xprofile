@@ -1,0 +1,34 @@
+#!/bin/sh
+
+
+# Start picom
+picom --config ~/.config/picom/picom.conf -b  &
+
+# Set background
+~/.fehbg &
+
+# Run sxhkd
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Polkit authentication
+/usr/lib/xfce-polkit/xfce-polkit &
+
+# Notification daemon
+dunst &
+
+# Set resolution 
+xrandr -s 1920x1080 -r 240 &
+
+# Disable mouse acceleration
+xinput set-prop "pointer:Razer Razer Viper" "libinput Accel Profile Enabled" 0, 1 &
+
+# Fix scroll speed for edge/chrome/discord #todo chrome
+imwheel -b 45 &
+
+# Set cursor
+xsetroot -cursor_name left_ptr &
+
+~/.local/bin/eww daemon &
+
+numlockx on
+

@@ -1,0 +1,294 @@
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
+dark-light = #272A2B 
+active-light = #313435
+
+
+[bar/example] 
+tray-position = right 
+;monitor = LVDS1 
+width = 100%
+height = 27
+padding-left = 1
+padding-right = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-top-size =7
+wm-restack = bspwm
+
+modules-left = round-left bspwm round-right  
+modules-center =  
+modules-right =  round-left updates round-right alsa battery wlan round-left cpu dot-alt temperature round-right space mem round-left time round-right powermenu
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=13;3
+font-1 = JetBrainsMono Nerd Font:size=18;5
+font-2 = Material Design Icons:style=Bold:size=14;3
+font-3 = unifont:fontformat=truetype:size=13:antialias=true;
+font-4 = "JetbrainsMono Nerd Font:size=14;4"
+
+[module/round-left]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #2b2f37
+
+[module/round-right]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = #2b2f37
+
+[module/space]
+type = custom/text
+content = " "
+
+[module/dot-alt]
+type = custom/text
+content = "  "
+content-foreground = #646870  
+content-background = #2b2f37
+
+[module/dot]
+type = custom/text
+content = "  "
+content-foreground = #2b2f37
+
+ 
+[module/powermenu]
+type = custom/text 
+content =" " 
+content-padding = 2
+click-left = ~/.config/rofi/powermenu/powermenu
+content-foreground = #f25287
+
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/updates
+interval = 600
+label = "  %output%"
+format-foreground = ${colors.color2}
+format-foreground-error = ${colors.color1}
+format-background = #2b2f37
+click-left = kitty -e $SHELL -c 'sudo pacman -Syu'
+click-right = bspc rule -a \* -o state=floating ; sleep 0.015 ; kitty -e $SHELL -c 'yay -Qu | less'
+
+[module/alsa]
+type = internal/alsa
+format-volume = "<ramp-volume> <bar-volume>"
+ramp-volume-0 =""
+ramp-volume-0-font = 1
+ramp-volume-1 ="墳"
+ramp-volume-1-font = 1
+ramp-volume-2 =""
+ramp-volume-2-font = 1
+ramp-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background}
+
+
+format-muted = <label-muted>
+format-muted-foreground = ${colors.foreground}
+label-muted ="婢 Muted"
+format-muted-padding = 1
+format-muted-background = #2b2f37
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.color4}
+bar-volume-foreground-1 = ${colors.color4}
+bar-volume-foreground-2 = ${colors.color4}
+bar-volume-foreground-3 = ${colors.color4}
+bar-volume-foreground-4 = ${colors.color4}
+bar-volume-foreground-5 = ${colors.color4}
+bar-volume-foreground-6 = ${colors.color4}
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-foreground = ${colors.color4}
+bar-volume-indicator-font = 1
+bar-volume-fill = 
+bar-volume-fill-foreground = ${colors.color4}
+bar-volume-fill-font = 1
+bar-volume-empty = 
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.foreground}
+format-volume-padding = 1
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+format = <label-state>
+
+
+
+ws-icon-0 = "1;%{F#ff9b93}  " 
+ws-icon-1 = "2;%{F#98c379}  "   
+ws-icon-2 = "3;%{F#95e1d3}  "  
+ws-icon-3 = "4;%{F#F9DE8F}  "
+ws-icon-4 = "5;%{F#96CDFB} ﭮ "
+
+
+ 
+label-separator = ""
+label-separator-background = #2b2f37
+
+label-focused =  %icon%  
+label-focused-foreground = ${colors.foreground}
+label-focused-underline =  ${colors.color5}
+label-focused-padding = 1.0
+label-focused-background = #2b2f37
+
+label-occupied = %icon%  
+label-occupied-foreground = #646870  
+label-occupied-background = #2b2f37
+label-occupied-underline = ${colors.color4}
+label-occupied-padding = 1.0
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1.0
+label-empty-background = #2b2f37
+
+label-urgent = %icon%
+label-urgent-foreground = #88C0D0
+label-urgent-background = #2b2f37round-right
+label-urgent-underline = ${colors.color1}
+label-urgent-padding = 1.0
+
+[module/mem]
+type = custom/script
+exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
+format = <label>
+format-prefix = " " 
+label = %output% MB
+label-padding = 1
+format-prefix-foreground = ${colors.color2}
+
+
+[module/xbacklight]
+type = internal/xbacklight
+format = <label>
+format-prefix = "  "
+label = %percentage%
+format-prefix-foreground = #61afef
+label-foreground =   #D8DEE9
+format-padding = 1
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 10.0
+format-connected =  <label-connected>
+label-connected = "󰤧 " 
+label-connected-foreground = ${colors.color4}
+label-disconnected = "󰤭 " 
+label-disconnedted-foreground = ${colors.color4} 
+label-connected-background = ${colors.color8}
+label-disconnected-bacoground = ${colors.color8}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+format-charging-foreground = ${colors.color4}
+format-charging-background = ${colors.background}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.background}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.color4}
+format-foreground = ${colors.color4}
+format-background = ${colors.background}
+
+label-discharging-foreground = ${colors.foreground}
+label-charging-foreground = ${colors.color4}
+label-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.color4}
+animation-charging-framerate = 750
+
+format-charging-padding = 1
+format-discharging-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+format-prefix = " " 
+format = <label> 
+format-background = #2b2f37
+format-foreground = #989cff
+label = %percentage%%
+;format-backgoound = ${colors.color12} 
+
+[module/temperature]
+type = internal/temperature
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
+warn-temperature = 70
+label-foreground =  ${colors.color3} 
+format = <ramp> <label>
+;format-underline = #b48ead 
+format-warn = <ramp>  <label-warn>
+format-warn-underline = #b48ead
+format-background = #2b2f37
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-backgroud = #b48ead
+format-padding = 0 
+ramp-0 = 󰸁 
+ramp-foreground = ${colors.color3} 
+
+[module/time]
+type = internal/date
+interval = 60
+format = <label>
+format-foreground = ${colors.color4}
+format-background = #2b2f37
+
+time = 󰥔 %I:%M %p%
+date-alt = %{F#61afef}󰃭 %a, %b %d%{F-}
+
+label = %time%%date%
+
+
+
+

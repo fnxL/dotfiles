@@ -1,0 +1,101 @@
+# Pacstrap
+linux-lts
+linux-firmware
+base
+base-devel
+git
+nano
+neofetch
+networkmanager
+
+# AMD Drivers
+xf86-video-amdgpu
+
+# HW Acceleration VA-API
+libva-mesa-driver
+
+# Display Server X
+xorg
+xorg-xinitrc
+
+# WM
+bspwm
+sxhkd
+rofi
+polybar
+kitty
+
+#Authentication polkit
+xfce4-polkit
+
+lxappearance-gtk3
+
+# Browser
+firefox
+
+
+# Wallpaper
+#feh
+nitrogen
+#sxiv
+
+# AUR helper
+#yay
+
+# Fonts
+noto-fonts
+noto-fonts-emoji
+nerd-fonts-jetbrains-mono
+
+ 
+# Audio / Bluetooth
+pipewire
+pipewire-jack
+pipewire-alsa
+pipewire-pulse
+
+# Video Player
+mpv
+
+# File Manager & Plugins
+#lf
+thunar
+thunar-archive-plugin
+xarchiver
+unzip
+zip
+thunar-media-tags-plugin
+thunar-volman
+# Thumnails support for thunar
+tumbler
+ffmpegthumbnailer
+gvfs
+# ntfs partition support
+ntfs-3g 
+# Mount windows LDM dynamic partitions
+ldmtool
+# MTP Support (Mobile Devices)
+gvfs-mtp
+#gvfs-gphoto2 (PTP)
+#gvfs-afc (apple mobile devices)
+#gvfs-smb (SMB file sharing protocol over network)
+#samba (SMB, use SMB to setup media-servers or use jellyfin)
+#thunar-shares-plugin (SMB interface thunar)
+
+# Misc
+numlockx
+#imwheel #Set per app scroll speed
+#rxfetch
+htop
+btop
+
+#modern replacement for ls
+exa
+
+#prompt
+starship
+
+# Documents
+#onlyoffice
+zathura
+

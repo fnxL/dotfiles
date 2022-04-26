@@ -1,0 +1,105 @@
+configuration{
+    modi: "run,drun,window";
+    lines: 5;
+    font: "JetBrainsMono Nerd Font 14";
+    show-icons: true;
+    icon-theme: "Oranchelo";
+    terminal: "st";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "  ";
+    display-run: "   Run ";
+    display-window: " 﩯  window";
+    display-Network: " 󰤨  Network";
+    sidebar-mode: true;
+}
+
+@theme "aquadark"
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height: 360px;
+    border: 3px;
+    border-color: @gui07;
+    background-color: @gui00;
+}
+
+mainbox {
+    background-color: @gui00;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @gui00;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @gui01;
+    padding: 6px;
+    text-color: @gui0A;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    placeholder: "Launch app!";
+    placeholder-color: @gui03;
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @gui05;
+    background-color: @gui00;
+}
+
+listview {
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    background-color: @gui00;
+}
+
+element {
+    padding: 5px;
+    background-color: @gui00;
+    text-color: @gui05  ;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element selected {
+    background-color:  @gui06 ;
+    text-color: @gui04  ;
+}
+
+mode-switcher {
+    spacing: 0;
+    background-color: @gui00;
+  }
+
+button {
+    padding: 10px;
+    background-color: @gui00;
+    text-color: @gui05;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+
+button selected {
+  background-color: @gui00;
+  text-color: @gui0D;
+}

@@ -1,0 +1,228 @@
+#
+# wm independent hotkeys
+#
+
+#
+# bspwm hotkeys
+#
+# close and kill
+alt + {_,shift + }q
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+alt + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+alt + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+alt + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+alt + {t,shift + t,s,shift + f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+alt + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+alt + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+alt + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+alt + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+#alt + {grave,Tab}
+#	bspc {node,desktop} -f last
+alt + Tab
+    rofi -show window
+
+# focus the older or newer node in the focus history
+alt + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+alt + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+alt + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+alt + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+alt + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+alt + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+#alt + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+#alt + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+alt + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+################################################
+#               MEDIA KEYS                     #
+################################################
+
+# Player Previous
+XF86AudioPrev
+	playerctl previous
+
+# Player Next
+XF86AudioNext
+	playerctl next
+
+# Player Play/Pause
+XF86AudioPlay
+	playerctl play-pause
+
+# Volume up
+XF86AudioRaiseVolume 
+	sh ~/.scripts/notification/volume_pam.sh up
+
+# Volume down
+XF86AudioLowerVolume 
+	sh ~/.scripts/notification/volume_pam.sh down
+
+# Volume mute
+XF86AudioMute 
+	sh ~/.scripts/notification/volume_pam.sh toggle
+
+# Brightness up
+XF86MonBrightnessUp
+	sh ~/.scripts/notification/brightness.sh up
+
+# Brightnes down
+XF86MonBrightnessDown
+	sh ~/.scripts/notification/brightness.sh down
+
+
+################################################
+#              APPLICATIONS                    #
+################################################
+
+# terminal
+alt + {_,shift + } Return
+	{kitty, bspc rule -a \* -o state=floating && kitty}
+
+# App Launcher
+alt + d
+	rofi -terminal kitty -show drun
+
+# Discord
+alt + shift + d
+	discord
+
+# File manager (lf)
+alt + f
+	thunar
+	
+# Web Browser (firefox/chrome)
+alt + {_,shift +}w
+	{google-chrome-stable --profile-directory="Default",google-chrome-stable --profile-directory="Profile 1"}
+
+# Select wallpaper (sxiv)
+ctrl + shift + w
+	sxiv -t ~/Pictures/wallpapers
+
+# Show Help 
+alt + F1
+	~/.local/bin/sxhkd-help
+
+
+################################################
+#              RELOAD CONFIGS                  #
+################################################
+
+
+# make sxhkd reload its configuration files:
+alt + Escape
+	pkill -USR1 -x sxhkd; dunstify -a sxhkd 'sxhkd' 'config reloaded'
+
+# Restart Polybar
+ctrl + alt + p
+	~/.config/polybar/launch.sh
+
+# quit/restart bspwm
+ctrl + alt + {q,r}
+	bspc {quit,wm -r && dunstify -r 500 "BSPWM" "bspwm reloaded"}
+
+
+################################################
+#                       MISC                   #
+################################################
+
+# Lockscreen
+ctrl + alt + Delete
+	betterlockscreen -l dimblur
+
+# Screenshot
+ctrl + shift + x
+	sh ~/.scripts/notification/screenshot.sh -s clip -m select 
+
+# Custom move/resize
+ctrl + shift + {h,j,k,l}
+	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+
+
+# Music and Task Viewer (eww)
+alt + shift + n
+	{sh ~/.scripts/pane/eww_sidepanel.sh left on,sh ~/.scripts/pane/eww_sidepanel.sh left off}
+
+# --| Quit Menu (eww) |--
+alt + x
+    {sh ~/.scripts/pane/eww_sidepanel.sh right on,sh ~/.scripts/pane/eww_sidepanel.sh right off}
+
+
+#--| Top Hub Menu (eww) |--#
+alt + shift + m
+    {sh ~/.scripts/pane/eww_sidepanel.sh top on,sh ~/.scripts/pane/eww_sidepanel.sh top off}
+
+alt + slash
+	rofimoji
