@@ -1,11 +1,25 @@
 # Base16 Aquarium
 # Author: https://github.com/gdnand
 
+
+# GENERAL SETTINGS
+# ----------------
+set window-title-basename true
+set recolor               false
+set selection-clipboard   clipboard
 set font "JetBrainsMono Nerd Font Regular 13"
+set statusbar-basename true
+
+
+# LAYOUT SETTINGS
+# ---------------
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set show-scrollbars     false
+
+
 unmap i
 map i toggle_statusbar
-
-set selection-clipboard clipboard
 
 
 set notification-error-bg       "#20202a"
@@ -44,5 +58,4 @@ set render-loading-fg           "#cddbf9"
 
 set recolor-lightcolor          "#20202a"
 set recolor-darkcolor           "#cddbf9"
-set recolor                     "false"
 set recolor-keephue             "true"

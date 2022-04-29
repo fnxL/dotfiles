@@ -27,7 +27,7 @@ alt + g
 
 # set the window state
 alt + {t,shift + t,s,shift + f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t {tiled,pseudo_tiled,\~floating,\~fullscreen}
 
 # set the node flags
 alt + ctrl + {m,x,y,z}
@@ -67,7 +67,7 @@ alt + {o,i}
 
 # focus or send to the given desktop
 alt + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 #
 # preselect
@@ -149,7 +149,7 @@ XF86MonBrightnessDown
 
 # terminal
 alt + {_,shift + } Return
-	{kitty, bspc rule -a \* -o state=floating && kitty}
+	{kitty, bspc rule -a \* -o state=floating center=true rectangle=20x20 && kitty}
 
 # App Launcher
 alt + d
@@ -161,7 +161,7 @@ alt + shift + d
 
 # File manager (lf)
 alt + f
-	thunar
+	{bspc rule -a \* -o state=floating center=true rectangle=900x500 && kitty -e lf}
 	
 # Web Browser (firefox/chrome)
 alt + {_,shift +}w
@@ -174,6 +174,10 @@ ctrl + shift + w
 # Show Help 
 alt + F1
 	~/.local/bin/sxhkd-help
+
+# Power menu
+ctrl + alt + q 
+	~/.config/rofi/scripts/powermenu
 
 
 ################################################
@@ -190,8 +194,8 @@ ctrl + alt + p
 	~/.config/polybar/launch.sh
 
 # quit/restart bspwm
-ctrl + alt + {q,r}
-	bspc {quit,wm -r && dunstify -r 500 "BSPWM" "bspwm reloaded"}
+ctrl + alt + r
+	bspc wm -r && dunstify -r 500 "BSPWM" "bspwm reloaded"
 
 
 ################################################
@@ -209,20 +213,6 @@ ctrl + shift + x
 # Custom move/resize
 ctrl + shift + {h,j,k,l}
 	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
-
-
-# Music and Task Viewer (eww)
-alt + shift + n
-	{sh ~/.scripts/pane/eww_sidepanel.sh left on,sh ~/.scripts/pane/eww_sidepanel.sh left off}
-
-# --| Quit Menu (eww) |--
-alt + x
-    {sh ~/.scripts/pane/eww_sidepanel.sh right on,sh ~/.scripts/pane/eww_sidepanel.sh right off}
-
-
-#--| Top Hub Menu (eww) |--#
-alt + shift + m
-    {sh ~/.scripts/pane/eww_sidepanel.sh top on,sh ~/.scripts/pane/eww_sidepanel.sh top off}
 
 alt + slash
 	rofimoji
