@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd ~
+
+# Log WLR errors and logs to the hyprland log. Recommended
+export HYPRLAND_LOG_WLR=1
+export XCURSOR_SIZE=24
+export WLR_NO_HARDWARE_CURSOR=1
+export WLR_RENDERER=vulkan
+# Tell XWayland to use a cursor theme
+#export XCURSOR_THEME=Bibata-Modern-Classic
+
+exec Hyprland

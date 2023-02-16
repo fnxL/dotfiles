@@ -1,0 +1,180 @@
+@import "./mocha.css";
+
+* {
+    font-family: SF Pro Display,'Font Awesome 6 Pro Solid', 'Symbols Nerd Font Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @text;
+}
+
+tooltip {
+    background: @base;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @crust;
+    font-weight: 400;
+}
+
+
+
+
+#clock,
+#battery,
+#cpu,
+#backlight,
+#pulseaudio,
+#tray,
+#workspaces,
+#network,
+#custom-sep,
+#custom-playerctl,
+#custom-arch {
+    background: @surface0;
+    margin: 3px 0px;
+    margin-top: 5px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.116) 2px 2px 5px 2px;
+    margin-top: 5px;
+    border: 3px solid @surface1;
+}
+
+
+
+#custom-arch {
+    margin-left: 5px;
+    color: @sky;
+
+}
+
+#workspaces button {
+    padding: 5px;
+    color: @surface2;
+    margin-right: 5px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active{
+    color: @mauve;
+}
+
+#workspaces button.focused {
+    color: @subtext0;
+    background: @maroon;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: @crust;
+    background: @green;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+
+
+#workspaces {
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#custom-playerctl {
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+
+#window {
+    border-radius: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+
+
+/* CENTER */
+
+#clock {
+    border-radius: 10px;
+}
+
+
+/* RIGHT */
+
+#tray {
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#cpu {
+    color: @pink;
+    border-right: 0px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+
+#pulseaudio {
+    color: @blue;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+#pulseaudio.microphone {
+    color: @mauve;
+    margin-right: 5px;
+    border-radius: 0 10px 10px 0;
+}
+
+
+#custom-sep {
+    font-size: 14px;
+    color: @text;
+}
+
+#network {
+    color: @peach;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#battery.charging {
+    color: #ECE0A8;
+}
+
+#battery {
+    color: #AAC5A0;
+    font-weight: bolder;
+}
+
+#battery.warning:not(.charging) {
+    color: #ECE0A8;
+}
+
+#battery.critical:not(.charging) {
+    color: #E97193;
+}
+
+
+#backlight {
+    color: #A8E5E6;
+}
+
+
+

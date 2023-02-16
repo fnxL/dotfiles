@@ -1,0 +1,117 @@
+@import "./mocha.css";
+
+* {
+    font-family: SF Pro Display,'Font Awesome 6 Pro Solid', 'Symbols Nerd Font Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @text;
+}
+
+tooltip {
+    background: @base;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @crust;
+    font-weight: 400;
+}
+
+#clock,
+#battery,
+#cpu,
+#backlight,
+#pulseaudio,
+#tray,
+#workspaces,
+#network,
+#temperature,
+#memory,
+#custom-sep,
+#custom-playerctl,
+#custom-arch {
+    background: @base;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.116) 2px 2px 5px 2px;
+    padding: 2px 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+/* ---- LEFT MODULES ---- */
+
+#custom-arch {
+    color: @sky;
+}
+
+#workspaces button {
+    color: @surface2;
+    transition: all 0.2s ease;
+
+}
+
+#workspaces button.active {
+    color: @mauve;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces button:hover {
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+
+
+/* ---- RIGHT MODULES ---- */
+#cpu {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0px;
+    color: @mauve;
+    border-right: 0;
+}
+
+#memory,
+#temperature,
+#pulseaudio {
+    border-radius: 0;
+    margin-right: 0px;
+    padding-right: 5px;
+    border-right: 0;
+    border-left: 0;
+}
+
+#memory {
+    color: @lavender;
+}
+
+#temperature {
+    color: @text;
+}
+
+#temperature.critical {
+    color: @red;
+}
+
+#pulseaudio {
+    color: @blue;
+}
+#pulseaudio.muted {
+    color: @red;
+}
+
+#network {
+    color: @peach;
+    margin-right: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}

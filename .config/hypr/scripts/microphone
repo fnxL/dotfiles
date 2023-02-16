@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pamixer --default-source "$@"
+mic="${pamixer --default-source --get-volume-human}"
+
+if [ "$mic" = "muted" ]; then
+    notify-send -r 69 -a "Microphone" "Muted" -i $HOME/config/dunst/assets/mic-mute.svg -t 888 -u low
+else
+    notify-send -r 69 -a "Microphone" "Currently at $mic" -h int:value:"$mic" -i $HOME/config/dunst/assets/mic.svg -t 888 -u low
+fi
